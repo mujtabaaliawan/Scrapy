@@ -1,15 +1,9 @@
-from scrapy.crawler import CrawlerProcess
-from scrapy.utils.project import get_project_settings
 import json
 import requests
-import schedule
 
 
 def main():
 
-    # process = CrawlerProcess(get_project_settings())
-    # process.crawl('stock')
-    # process.start()
     with open('stocks.json', 'r') as openfile:
         data = json.load(openfile)
     json_data = json.dumps(data)
