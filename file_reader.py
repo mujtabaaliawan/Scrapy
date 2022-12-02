@@ -7,9 +7,9 @@ import schedule
 
 def main():
 
-    process = CrawlerProcess(get_project_settings())
-    process.crawl('stock')
-    process.start()
+    # process = CrawlerProcess(get_project_settings())
+    # process.crawl('stock')
+    # process.start()
     with open('stocks.json', 'r') as openfile:
         data = json.load(openfile)
     json_data = json.dumps(data)
