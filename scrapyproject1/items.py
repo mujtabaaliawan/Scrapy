@@ -44,3 +44,7 @@ class StockItem(scrapy.Item):
         input_processor=MapCompose(to_float),
         output_processor=TakeFirst()
     )
+    date = scrapy.Field(
+        input_processor=MapCompose(),
+        output_processor=TakeFirst()
+    )

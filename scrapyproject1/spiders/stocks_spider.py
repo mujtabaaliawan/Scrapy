@@ -15,7 +15,8 @@ class StockSpider(scrapy.Spider):
     }
 
     def parse(self, response):
-
+        market_date = response.css("div.col-sm-12.inner-content-table")
+        market_last_updated = market_date.css("h4::text").get()
         market_content = response.css("div.tab-content")
         market_main_board = market_content.css("div.col-sm-12.tab-pane.inner-content-table.automobile-div.active")
 
@@ -36,6 +37,7 @@ class StockSpider(scrapy.Spider):
                 product.add_value('current', item_data[5])
                 product.add_value('change', item_data[7])
                 product.add_value('volume', item_data[8])
+                product.add_value('date', market_last_updated)
                 yield product.load_item()
 
             for stock_item in table.css("tr.blue-text-td"):
@@ -51,6 +53,7 @@ class StockSpider(scrapy.Spider):
                 product.add_value('current', item_data[5])
                 product.add_value('change', item_data[7])
                 product.add_value('volume', item_data[8])
+                product.add_value('date', market_last_updated)
                 yield product.load_item()
 
             for stock_item in table.css("tr.green-text-td"):
@@ -66,4 +69,5 @@ class StockSpider(scrapy.Spider):
                 product.add_value('current', item_data[5])
                 product.add_value('change', item_data[7])
                 product.add_value('volume', item_data[8])
+                product.add_value('date', market_last_updated)
                 yield product.load_item()
