@@ -37,7 +37,7 @@ class StockSpider(scrapy.Spider):
                 product.add_value('current', item_data[5])
                 product.add_value('change', item_data[7])
                 product.add_value('volume', item_data[8])
-                product.add_value('date', market_last_updated)
+                product.add_value('date_time', market_last_updated)
                 yield product.load_item()
 
             for stock_item in table.css("tr.blue-text-td"):
@@ -53,7 +53,7 @@ class StockSpider(scrapy.Spider):
                 product.add_value('current', item_data[5])
                 product.add_value('change', item_data[7])
                 product.add_value('volume', item_data[8])
-                product.add_value('date', market_last_updated)
+                product.add_value('date_time', market_last_updated)
                 yield product.load_item()
 
             for stock_item in table.css("tr.green-text-td"):
@@ -69,5 +69,5 @@ class StockSpider(scrapy.Spider):
                 product.add_value('current', item_data[5])
                 product.add_value('change', item_data[7])
                 product.add_value('volume', item_data[8])
-                product.add_value('date', market_last_updated)
+                product.add_value('date_time', market_last_updated)
                 yield product.load_item()
