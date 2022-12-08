@@ -30,9 +30,10 @@ def data_sender():
     with open('stocks.json', 'w') as openfile:
         pass
     URL = "http://127.0.0.1:8000/handler"
-    header = {'Content-type': 'application/json', 'Secret-Token': 'igni'}
-    requests.post(url=URL, data=json_data, headers=header)
-
+    header = {'Content-type': 'application/json',
+              'Secret-Token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYXJrZXQiOiJzdG9jayIsIm5hbWUiOiJqYW5nb19yYW5nbyIsImNpdHkiOiJrYXJhY2hpIiwiaWF0IjoxNTE2MjM5MDIyfQ.-9ijMMtccWA_0NhGfDIPsJWYUYOJuKtE9P7U6-iovDI"}
+    response = requests.post(url=URL, data=json_data, headers=header)
+    print(response)
 
 if __name__ == '__main__':
     main()

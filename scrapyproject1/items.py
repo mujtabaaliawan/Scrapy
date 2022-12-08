@@ -7,13 +7,17 @@ def to_float(value):
     return float(value)
 
 
+def stripper(value):
+    return value.strip()
+
+
 class StockItem(scrapy.Item):
     category = scrapy.Field(
-        input_processor=MapCompose(),
+        input_processor=MapCompose(stripper),
         output_processor=TakeFirst()
     )
     company = scrapy.Field(
-        input_processor=MapCompose(),
+        input_processor=MapCompose(stripper),
         output_processor=TakeFirst()
     )
     ldcp = scrapy.Field(
