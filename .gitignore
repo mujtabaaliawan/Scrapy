@@ -1,5 +1,5 @@
-idea/
-pycache__/
+.idea/
+__pycache__/
 build/
 dbs/
 eggs/
