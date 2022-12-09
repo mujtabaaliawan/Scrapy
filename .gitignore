@@ -1,0 +1,13 @@
+.idea/
+__pycache__/
+build/
+dbs/
+eggs/
+project.egg-info/
+scrapyenv/
+file_reader
+graph_requester
+requirements
+scrapy
+setup
+stocks
