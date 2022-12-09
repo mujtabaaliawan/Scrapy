@@ -1,2 +1,0 @@
-[scrapy]
-settings = scrapyproject1.settings
