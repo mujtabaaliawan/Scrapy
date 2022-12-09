@@ -7,6 +7,11 @@ def to_float(value):
     return float(value)
 
 
+def to_int(value):
+    value = value.replace(',', '')
+    return int(value)
+
+
 def stripper(value):
     return value.strip()
 
@@ -45,7 +50,7 @@ class StockItem(scrapy.Item):
         output_processor=TakeFirst()
     )
     volume = scrapy.Field(
-        input_processor=MapCompose(to_float),
+        input_processor=MapCompose(to_int),
         output_processor=TakeFirst()
     )
     date_time = scrapy.Field(
