@@ -11,7 +11,7 @@ requirements
 scrapy
 setup
 stocks
-scrapyproject1/settings
-scrapyproject1/__init__
+scrapyproject1/settings.py
+scrapyproject1/__init__.py
 scrapyproject1/.idea/
 scrapyproject1/__pycache__/
