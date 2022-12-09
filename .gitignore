@@ -11,3 +11,5 @@ requirements
 scrapy
 setup
 stocks
+settings
+__init__
