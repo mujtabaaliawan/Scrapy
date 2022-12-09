@@ -11,5 +11,5 @@ requirements
 scrapy
 setup
 stocks
-settings
-__init__
+scrapyproject1/settings
+scrapyproject1/__init__
