@@ -11,3 +11,7 @@ requirements
 scrapy
 setup
 stocks
+settings
+__init__
+.idea/
+__pycache__/
