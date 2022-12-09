@@ -7,9 +7,9 @@ dbs/
 eggs/
 project.egg-info/
 scrapyenv/
-.file_reader
-.graph_requester
-.requirements
-.scrapy
-.setup
-.stocks
+file_reader
+graph_requester
+requirements
+scrapy
+setup
+stocks
