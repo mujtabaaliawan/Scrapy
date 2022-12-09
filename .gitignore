@@ -1,7 +1,5 @@
-# ignore all . files but include . folders
 .*
-!.*/
-!__*/
+!.gitignore
 
 .idea/
 __pycache__/
