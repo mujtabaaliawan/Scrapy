@@ -3,6 +3,7 @@
 
 .idea/
 __pycache__/
+__init__
 build/
 dbs/
 eggs/
