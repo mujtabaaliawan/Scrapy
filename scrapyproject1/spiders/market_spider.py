@@ -14,7 +14,7 @@ class StockSpider(scrapy.Spider):
         market_date = response.css("div.col-sm-12.inner-content-table")
         market_last_updated = market_date.css("h4::text").get()
 
-        market_main_board = response.css("#marketmainboard")
+        market_main_board = response.css("div.active")
         for table in market_main_board.css("div.table-responsive"):
 
             category_name = table.css("h4::text").extract()
