@@ -1,5 +1,5 @@
 import scrapy
-from items import StockItem
+from scrapyproject1.items import StockItem
 from scrapy.loader import ItemLoader
 from scrapyproject1.selectors import selectors
 
