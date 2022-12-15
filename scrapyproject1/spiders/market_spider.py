@@ -1,38 +1,47 @@
 import scrapy
-from scrapyproject1.items import StockItem
+from items import StockItem
 from scrapy.loader import ItemLoader
+from scrapyproject1.selectors import selectors
 
 
 class StockSpider(scrapy.Spider):
     name = "market"
-    start_urls = [
-        'https://www.psx.com.pk/market-summary/',
-    ]
+    start_urls = [selectors.MARKET_URL]
 
-    def parse(self, response):
 
-        market_date = response.css("div.inner-content-table")
-        market_last_updated = market_date.css("h4::text").get()
-        market_main_board = response.css("div.active")
+    def parse(self, response, **kwargs):
 
-        for table in market_main_board.css("div.table-responsive"):
+        field_to_index_mapping = [
+            {'field_name': 'ldcp', 'index': 0},
+            {'field_name': 'open', 'index': 1},
+            {'field_name': 'high', 'index': 2},
+            {'field_name': 'low', 'index': 3},
+            {'field_name': 'current', 'index': 4},
+            {'field_name': 'change', 'index': 6},
+            {'field_name': 'volume', 'index': 7},
+        ]
 
-            category_name = table.css("h4::text").extract()
-            company_data = table.css("tr td.dataportal")
+        market_date = response.css(selectors.DATE_BOARD)
+        market_last_updated = market_date.css(selectors.DATE_ELEMENT).get()
 
-            for company in company_data:
-                stock_detail = company.css("td.dataportal ~ td::text").extract()
+        market_main_board = response.css(selectors.MARKET_BOARD)
+
+        for table in market_main_board.css(selectors.CATEGORY_BOARD):
+
+            category_name = table.css(selectors.CATEGORY_ELEMENT).extract()
+
+            for company in table.css(selectors.COMPANY_BOARD):
+
+                company_name = company.css(selectors.COMPANY_NAME_ELEMENT).extract()
+                stock_detail = company.css(selectors.COMPANY_DATA_ELEMENT).extract()
+
                 product = ItemLoader(item=StockItem())
+
                 product.add_value('category', category_name)
-                product.add_value('company', company.css("::text").extract())
-                product.add_value('ldcp', stock_detail[0])
-                product.add_value('open', stock_detail[1])
-                product.add_value('high', stock_detail[2])
-                product.add_value('low', stock_detail[3])
-                product.add_value('current', stock_detail[4])
-                product.add_value('change', stock_detail[6])
-                product.add_value('volume', stock_detail[7])
+                product.add_value('company', company_name)
                 product.add_value('date_time', market_last_updated)
+
+                for field_index_map in field_to_index_mapping:
+                    product.add_value(field_index_map['field_name'], stock_detail[field_index_map['index']])
+
                 yield product.load_item()
-
-
